@@ -1,4 +1,4 @@
-import { Client, Databases, ID, Storage, Query } from "appwrite";
+import { Client, Databases, ID, Storage, Query, AppwriteException } from "appwrite";
 import conf from "../conf/conf";
 
 export class DatabaseService {
@@ -28,7 +28,7 @@ export class DatabaseService {
                 }
             )
         } catch (error) {
-            console.log(error);
+            console.log("DatabaseService :: createPost :: error", error);
         }
     }
 
@@ -46,7 +46,7 @@ export class DatabaseService {
                 }
             )
         } catch (error) {
-            console.log(error);
+            console.log("DatabaseService :: updatePost :: error", error);
         }
     }
 
@@ -60,7 +60,7 @@ export class DatabaseService {
             return true
 
         } catch (error) {
-            console.log(error);
+            console.log("DatabaseService :: deletePost :: error", error);
             return false
         }
     }
@@ -73,7 +73,7 @@ export class DatabaseService {
                 slug
             )
         } catch (error) {
-            console.log(error);
+            console.log("DatabaseService :: getPost :: error", error);
             return false
         }
     }
@@ -84,12 +84,18 @@ export class DatabaseService {
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries
-            )
+            );
         } catch (error) {
-            console.log(error);
-            return false
+            console.error("DatabaseService :: getPosts :: error", error);
+            if (error instanceof AppwriteException && error.code === 401) {
+                // User not authenticated or doesn't have permission
+                // Handle the error in the calling code (e.g., redirect to login)
+                return null; // Or redirect to login
+            }
+            throw error;
         }
     }
+
 
 
 
@@ -101,7 +107,7 @@ export class DatabaseService {
                 file
             );
         } catch (error) {
-            console.log("Appwrite service :: uploadFile :: error", error);
+            console.log("DatabaseService :: uploadFile :: error", error);
             return false; // Consistent error handling
         }
     }
@@ -116,7 +122,7 @@ export class DatabaseService {
             )
             return true
         } catch (error) {
-            console.log(error);
+            console.log("DatabaseService :: deleteFile :: error", error);
             return false
         }
     }
@@ -124,11 +130,11 @@ export class DatabaseService {
     getFilePreview(fileId) {
         try {
             return this.bucket.getFilePreview(
-                conf.appwriteBucketId,  
+                conf.appwriteBucketId,
                 fileId
             );
         } catch (error) {
-            console.log("Appwrite service :: getFilePreview :: error", error);
+            console.log("DatabaseService :: getFilePreview :: error", error);
             return false; // Consistent error handling
         }
     }

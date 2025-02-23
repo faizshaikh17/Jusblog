@@ -1,4 +1,4 @@
-import { Client, Account, ID } from 'appwrite';
+import { Client, Account, ID, AppwriteException } from 'appwrite';
 import conf from '../conf/conf';
 
 export class AuthService {
@@ -19,7 +19,7 @@ export class AuthService {
                 return this.login
             } else throw new Error
         } catch (error) {
-            console.log(error);
+            console.log("AuthService :: login :: error", error);
         }
     }
 
@@ -27,7 +27,7 @@ export class AuthService {
         try {
             return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
-            console.log(error);
+            console.log("AuthService :: createAccount :: error", error);
         }
     }
 
@@ -35,17 +35,22 @@ export class AuthService {
         try {
             return await this.account.get();
         } catch (error) {
-            console.log(error);
+            console.error("AuthService :: getUser :: error", error);
+            if (error instanceof AppwriteException && error.code === 401) {
+                // Session has expired
+                return null; // Or redirect to login
+            }
+            throw error; // Re-throw the error for the calling code to handle
         }
-        return null;
     }
+
 
     async logout() {
         try {
             const userlogout = await this.account.deleteSessions();
             if (userlogout) return this.login;
         } catch (error) {
-            console.log(error);
+            console.log("AuthService :: logout :: error", error);
         }
     }
 }

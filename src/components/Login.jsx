@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Logo, Input, Button } from './index'
@@ -15,16 +15,19 @@ export function Login() {
 
   const login = async (data) => {
     setError("")
-    try {
-      const session = await authService.login(data)
-      if (session) {
-        const userData = await authService.getUser()
-        if (userData) dispatch(authLogin(userData));
-        navigate("/")
+      try {
+        const session = await authService.login(data)
+        if (session) {
+          const userData = await authService.getUser()
+          if (userData) dispatch(authLogin(userData));
+          navigate("/")
+        }
+      } catch (error) {
+        setError(error.message)
+        navigate("/login")
       }
-    } catch (error) {
-      setError(error.message)
-    }
+
+
   }
   return (
     <div className='flex items-center justify-center w-full'>
@@ -57,7 +60,7 @@ export function Login() {
             <div className='flex pt-4 justify-between w-full'>
               <Link to={'/'}>
                 <Button className="w-full py-2 px-4 text-base font-semibold text-[#09090B] text-opacity-70 bg-white rounded-lg shadow-md transition-colors duration-300" type="submit">Back to Home</Button>
-                </Link>
+              </Link>
               <Button className="w-full text-base font-semibold  text-white bg-[#09090B] hover:bg-[#09090B] rounded-lg shadow-md transition-colors duration-300" type="submit">Sign In</Button> {/* Significant button enhancement */}
             </div>
           </div>
