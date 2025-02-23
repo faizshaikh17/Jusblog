@@ -12,19 +12,24 @@ import Signup from './Pages/Signup.jsx'
 import AddPost from './Pages/AddPost.jsx'
 import EditPost from './Pages/EditPost.jsx'
 import Post from './Pages/Post.jsx'
+import { meta } from '@eslint/js'
+
+const API_BASE_URL = import.meta.env.VITE_APP_API_URL
+// || 'http://localhost:3000';
+console.log(API_BASE_URL)
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: `${API_BASE_URL}/`,
     element: <App />,
     children: [
       {
-        path: '/',
+        path: `${API_BASE_URL}/`,
         element: <Home />
       }
       ,
       {
-        path: '/signup',
+        path: `${API_BASE_URL}/signup`,
         element: (
           <AuthLayout authentication={false}>
             <Signup />
@@ -32,7 +37,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: '/login',
+        path: `${API_BASE_URL}/login`,
         element: (
           <AuthLayout authentication={false}>
             <Login />
@@ -48,7 +53,7 @@ const router = createBrowserRouter([
       //   )
       // },
       {
-        path: '/add-post',
+        path: `${API_BASE_URL}/add-post`,
         element: (
           <AuthLayout authentication={true}>
             <AddPost />
@@ -56,7 +61,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: '/edit-post/:slug',
+        path: `${API_BASE_URL}/edit-post/:slug`,
         element: (
           <AuthLayout authentication={true}>
             <EditPost />
@@ -64,7 +69,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: "/post/:slug",
+        path: `${API_BASE_URL}/post/:slug`,
         element: <Post />,
       }
 
