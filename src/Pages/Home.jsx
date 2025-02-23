@@ -34,10 +34,10 @@ function Home() {
 
                 <section className="text-center px-4 relative">
                     <div className='flex flex-col animate-fade-in'>
-                        <h1 className="text-4xl font-light md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-pink-100 to-pink-400 animate-text-glow leading-tight pt-serif-regular">
+                        <h1 className="text-7xl font-light md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-pink-100 to-pink-400 animate-text-glow leading-tight pt-serif-regular">
                             Ideas &
                         </h1>
-                        <h1 className="text-4xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-100 animate-text-glow leading-tight pt-serif-regular">
+                        <h1 className="text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-100 animate-text-glow leading-tight pt-serif-regular">
                             Stories
                         </h1>
 
