@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Logo, LogoutBtn } from '../index';
+import { Container, Logo, LogoutBtn, Button } from '../index';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link, NavLink } from 'react-router-dom';
@@ -36,10 +36,11 @@ export const Header = () => {
       <Container>
         <div className='w-full'>
           <nav className='flex items-center text-white'>
-            <div className='flex items-center'>
+            <div className='flex items-end'>
               <Link to='/'>
                 <Logo />
               </Link>
+              <button className='px-3 m-2 cursor-pointer border border-gray-200 text-sm font-semibold rounded-lg'>Beta</button>
             </div>
             <ul className='flex ml-auto space-x-6'>
               {navItems.map((item) =>
@@ -48,10 +49,9 @@ export const Header = () => {
                     <NavLink
                       to={item.slug}
                       className={({ isActive }) =>
-                        `inline-block px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                          isActive
-                            ? 'text-[#F580BD] border-b-2 border-[#F580BD]'
-                            : 'text-white hover:text-[#F580BD] hover:border-b-2 hover:border-[#F580BD]'
+                        `inline-block px-4 py-2 text-sm font-medium transition-all duration-200 ${isActive
+                          ? 'text-[#F580BD] border-b-2 border-[#F580BD]'
+                          : 'text-white hover:text-[#F580BD] hover:border-b-2 hover:border-[#F580BD]'
                         }`
                       }
                     >
