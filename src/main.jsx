@@ -15,7 +15,7 @@ import Post from './Pages/Post.jsx'
 
 const router = createBrowserRouter([
   {
-    path: 'https://jusblogme.vercel.app/',
+    path: '/',
     element: <App />,
     children: [
       {
