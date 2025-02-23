@@ -14,22 +14,19 @@ import EditPost from './Pages/EditPost.jsx'
 import Post from './Pages/Post.jsx'
 import { meta } from '@eslint/js'
 
-const API_BASE_URL = import.meta.env.VITE_APP_API_URL
-// || 'http://localhost:3000';
-console.log(API_BASE_URL)
 
 const router = createBrowserRouter([
   {
-    path: `${API_BASE_URL}/`,
+    path: `/`,
     element: <App />,
     children: [
       {
-        path: `${API_BASE_URL}/`,
+        path: `/`,
         element: <Home />
       }
       ,
       {
-        path: `${API_BASE_URL}/signup`,
+        path: `/signup`,
         element: (
           <AuthLayout authentication={false}>
             <Signup />
@@ -37,7 +34,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: `${API_BASE_URL}/login`,
+        path: `/login`,
         element: (
           <AuthLayout authentication={false}>
             <Login />
@@ -53,7 +50,7 @@ const router = createBrowserRouter([
       //   )
       // },
       {
-        path: `${API_BASE_URL}/add-post`,
+        path: `/add-post`,
         element: (
           <AuthLayout authentication={true}>
             <AddPost />
@@ -61,7 +58,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: `${API_BASE_URL}/edit-post/:slug`,
+        path: `/edit-post/:slug`,
         element: (
           <AuthLayout authentication={true}>
             <EditPost />
@@ -69,7 +66,7 @@ const router = createBrowserRouter([
         )
       },
       {
-        path: `${API_BASE_URL}/post/:slug`,
+        path: `/post/:slug`,
         element: <Post />,
       }
 
