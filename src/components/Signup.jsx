@@ -52,7 +52,7 @@ function Signup() {
       </div>
       <div className='flex flex-col sm:flex-row justify-between pt-4 w-full gap-2'>
         <Link to={'/'}>
-          <Button className="w-full py-2 px-4 text-base font-semibold text-[#09090B] text-opacity-70 bg-white  border border-gray-300  rounded-lg shadow-md transition-colors duration-300" type="submit">Back to Home</Button>
+          <Button className="w-full py-2 px-4 text-base font-semibold text-[#09090B] text-opacity-70 bg-white  border border-gray-300  rounded-lg shadow-md  transition-colors duration-300" type="submit">Back to Home</Button>
         </Link>
         <Button className="w-full py-2 px-4 text-base font-semibold  text-white bg-[#09090B] hover:bg-[#09090B] rounded-lg shadow-md transition-colors duration-300" type="submit">Sign Up</Button>
       </div>
