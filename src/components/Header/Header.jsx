@@ -40,7 +40,7 @@ export const Header = () => {
               <Link to='/'>
                 <Logo />
               </Link>
-              <button className='px-3 m-2 cursor-pointer border border-gray-200 text-sm font-semibold rounded-lg'>Beta</button>
+              <button className='px-1 m-2 cursor-pointer border border-gray-200 text-xs rounded-lg'>Beta</button>
             </div>
             <ul className='flex ml-auto space-x-6'>
               {navItems.map((item) =>

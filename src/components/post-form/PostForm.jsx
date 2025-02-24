@@ -70,7 +70,7 @@ function PostForm({ post }) {
             className="w-full mx-auto my-8"
             onSubmit={handleSubmit(submit)}
         >
-            <div className="w-full bg-[#111115] text-white border border-pink-300 rounded-xl p-6 shadow-lg shadow-gray-800/50">
+            <div className="w-full bg-[#111115] text-white border border-gray-500 rounded-xl p-6 shadow-lg shadow-gray-800/50">
                 <div className="space-y-6">
                     <Input
                         className="mb-4 w-full bg-white text-black border-gray-700 placeholder-gray-400 rounded-lg text-xl p-2 pl-3 focus:ring-2 focus:ring-gray-600 focus:border-transparent transition-all duration-200"

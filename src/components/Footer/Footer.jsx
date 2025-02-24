@@ -7,7 +7,7 @@ export function Footer() {
     return (
         <footer className="text-[#FAFAFA] z-[10] px-6 py-4 w-full">
             <div className=" flex justify-center items-center space-x-2">
-                <p className="text-center text-sm">© Designed & Developed by Faiz Shaikh</p>
+                <p className="text-center text-xs">© Designed & Developed by Faiz Shaikh</p>
                 <a
                     href="https://github.com/faizshaikh17/whyReact/tree/main/jusBlog"
                     target="_blank"
