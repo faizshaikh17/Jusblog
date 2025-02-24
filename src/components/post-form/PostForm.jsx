@@ -39,7 +39,11 @@ function PostForm({ post }) {
                 if (file) {
                     const fileId = file?.$id;
                     data.featuredImage = fileId;
-                    const dbPost = await databaseService.createPost({ ...data, userid: userData.$id })
+                    data.slug = fileId;
+                    console.log("file", file);
+                    console.log("data", data);
+                    const dbPost = await databaseService.createPost({ ...data, userid: userData.$id, $id: fileId })
+                    console.log("dbpost", dbPost)
                     if (dbPost) navigate(`/post/${dbPost.$id}`)
                     databaseService.getFilePreview(dbPost.featuredImage)
                 }
@@ -117,7 +121,7 @@ function PostForm({ post }) {
 
                         <Button
                             type="submit"
-                            className={`m-4 w-1/5 h-12 rounded-lg bg-blue-500 hover:bg-blue-700 text-white text-base font-medium transition-all duration-200 `}
+                            className={`m-4 w-1/5 h-12 rounded-lg bg-blue-500 hover:bg-blue-700 text-white text-base font-medium transition-all duration-50 `}
                         >
                             {post ? "Update" : "Submit"}
                         </Button>

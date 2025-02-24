@@ -4,6 +4,7 @@ import databaseService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import Home from './Home'
 
 export default function Post() {
     const [post, setPost] = useState(null); // Initialize to null
@@ -42,46 +43,61 @@ export default function Post() {
     }
 
     return (
-        <Container>
-            <article className="w-full max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-                {/* Featured Image Section */}
-                <div className="relative mb-8">
-                    <img
-                        src={databaseService.getFilePreview(post.featuredImage)}
-                        alt={post.title}
-                        className="w-full rounded-2xl object-cover aspect-video shadow-lg" // aspect-video maintains aspect ratio
-                        style={{ maxHeight: "500px" }} // Optional max height
-                        loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-2xl"></div>  {/*Dark gradient overlay*/}
-                </div>
-
-                {/* Post Header */}
-                <header className="mb-6">
-                    <h1 className="text-3xl font-bold text-[#FCFCFF] mb-2">{post.title}</h1>
-                    <div className="text-sm text-gray-500 flex items-center justify-between">
-                        <span>By: Faiz</span> {/* Replace with actual author */}
-                        <span>
-                            {/* Edit/Delete Buttons (Conditional Rendering) */}
-                            {isAuthor && (
-                                <div className="flex space-x-2">
-                                    <Link to={`/edit-post/${post.$id}`}>
-                                        <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">
-                                            Edit
-                                        </Button>
-                                    </Link>
-                                    <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm" onClick={deletePost}>
-                                        Delete
-                                    </Button>
-                                </div>
-                            )}
-                        </span>
+        <>
+            <Container>
+                <article className="w-full max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                    {/* Featured Image Section */}
+                    <div className="relative mb-8">
+                        <img
+                            src={databaseService.getFilePreview(post.featuredImage)}
+                            alt={post.title}
+                            className="w-full rounded-2xl object-cover aspect-video shadow-lg" // aspect-video maintains aspect ratio
+                            style={{ maxHeight: "500px" }} // Optional max height
+                            loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-2xl"></div>  {/*Dark gradient overlay*/}
                     </div>
-                </header>
 
-                {/* Post Content */}
-                <div className="prose prose-invert text-2xl max-w-none text-[#FCFCFF]">{parse(post.content)}</div>
-            </article>
-        </Container>
+                    {/* Post Header */}
+                    <header className="mb-6">
+                        <h1 className="text-3xl font-bold text-[#FCFCFF] mb-2">{post.title}</h1>
+                        <div className="text-sm text-gray-500 flex items-center justify-between">
+                            <span>By: Faiz</span> {/* Replace with actual author */}
+                            <span>
+                                {/* Edit/Delete Buttons (Conditional Rendering) */}
+                                {isAuthor && (
+                                    <div className="flex space-x-2">
+                                        <Link to={`/edit-post/${post.$id}`}>
+                                            <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm">
+                                                Edit
+                                            </Button>
+                                        </Link>
+                                        <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm" onClick={deletePost}>
+                                            Delete
+                                        </Button>
+                                    </div>
+                                )}
+                            </span>
+                        </div>
+                    </header>
+
+                    {/* Post Content */}
+                    <div className="prose prose-invert text-2xl max-w-none text-[#FCFCFF]">{parse(post.content)}</div>
+                </article>
+            </Container>
+            {/* <Container>
+                <div className='w-full px-2 py-8'>
+
+                    <div className='flex flex-col gap-6'>
+                        {posts.map((post) => (
+                            <div key={post.$id} className='w-2/3'>
+                                <PostCard {...post} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </Container> */}
+        </>
+
     );
 }
