@@ -73,7 +73,9 @@ export const Header = () => {
               )}
               {authStatus && (
                 <li>
-                  <Profile />
+                  <Profile>
+                    {userData && userData.name.charAt(0) || "F"}
+                  </Profile>
                 </li>
               )}
             </ul>
