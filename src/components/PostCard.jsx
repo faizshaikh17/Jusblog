@@ -2,13 +2,14 @@ import React from 'react';
 import databaseService from '../appwrite/config';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
+import Profile from './Header/Profile'
 
 function PostCard({ $id, title, featuredImage, content }) {
     return (
         <Link to={`/post/${$id}`} className="block">
             <div className='w-full flex h-60 gap-4 p-4 rounded-xl bg-[#171717] hover:bg-[#1f1f1f] transition-all duration-300 ease-in-out shadow-md hover:shadow-2xl border border-[#2a2a2a] hover:border-[#828287] overflow-hidden'>
                 <div className='w-3/4 flex flex-col justify-between'>
-                    <div className='space-y-3'>
+                    <div className='space-y-4'>
                         <h2 className='text-2xl hover:underline text-[#FCFCFF] font-semibold hover:text-[#c9c9c9] transition-colors duration-200 line-clamp-2'>
                             {title}
                         </h2>
@@ -18,7 +19,8 @@ function PostCard({ $id, title, featuredImage, content }) {
                             </p>
                         </div>
                     </div>
-                    <div className="flex justify-start items-start">
+                    <div className="flex mt-1 justify-between items-end">
+                        <Profile className='' />
                         <Link to={`/post/${$id}`} className="block">
                             <span className="text-xs text-gray-500 hover:text-gray-400 hover:underline transition-colors duration-200">Read More →</span>
                         </Link>
