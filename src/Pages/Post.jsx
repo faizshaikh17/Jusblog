@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import databaseService from "../appwrite/config";
-import { Button, Container } from "../components";
+import { Button, Container, PostCard } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import Home from './Home'
@@ -10,6 +10,7 @@ export default function Post() {
     const [post, setPost] = useState(null); // Initialize to null
     const { slug } = useParams();
     const navigate = useNavigate();
+    const { posts } = useSelector((state) => state.post);
 
     const userData = useSelector((state) => state.auth.userData);
     const isAuthor = post && userData ? post.userid === userData.$id : false;
@@ -82,21 +83,24 @@ export default function Post() {
                     </header>
 
                     {/* Post Content */}
-                    <div className="prose prose-invert text-2xl max-w-none text-[#FCFCFF]">{parse(post.content)}</div>
+                    <div className="prose prose-invert text-xl max-w-none text-[#FCFCFF]">{parse(post.content)}</div>
                 </article>
             </Container>
-            {/* <Container>
+            <Container>
+                <br />
+            </Container>
+            <Container>
                 <div className='w-full px-2 py-8'>
 
-                    <div className='flex flex-col gap-6'>
-                        {posts.map((post) => (
-                            <div key={post.$id} className='w-2/3'>
+                    <div className='flex flex-wrap gap-6'>
+                        {posts.filter((post) => (post.$id !== slug)).map((post) => (
+                            <div key={post.$id} className='w-[48%]'>
                                 <PostCard {...post} />
                             </div>
                         ))}
                     </div>
                 </div>
-            </Container> */}
+            </Container>
         </>
 
     );
