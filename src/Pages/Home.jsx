@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Container, PostCard } from '../components';
 import databaseService from '../appwrite/config';
 import { useSelector } from 'react-redux';
+import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 function Home() {
     const [posts, setPosts] = useState([]);
@@ -17,8 +19,7 @@ function Home() {
 
     if (!authStatus) {
         return (
-            <main className=" relativ top-[15
-            %] absolute flex-grow w-full flex flex-col items-center justify-center overflow-hidden">
+            <main className="top-[10%] absolute flex-grow w-full flex flex-col items-center justify-center overflow-hidden">
                 {/* Falling Beam Effects */}
                 <div className="absolute z-[2] inset-0 pointer-events-none">
                     {Array.from({ length: 5 }, (_, i) => (
@@ -47,6 +48,11 @@ function Home() {
                         Unleash & Express your writeups.
                     </p>
                 </section>
+                <Link to={'/signup'}>
+                    <Button className=' mt-8 text-xl px-6 rounded-3xl font-semibold bg-white'>
+                        Get Started
+                    </Button>
+                </Link>
             </main>
         );
     } else {
