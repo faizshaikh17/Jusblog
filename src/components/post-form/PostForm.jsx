@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import databaseService from '../../appwrite/config';
 import { useNavigate } from 'react-router-dom';
 import { Input, Select, Button, RTE } from '../index';
+import { ID } from 'appwrite'
 
 function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
@@ -25,9 +26,7 @@ function PostForm({ post }) {
                     await databaseService.deleteFile(post.featuredImage)
                 }
                 const file = data.image[0] ? await databaseService.uploadFile(data.image[0]) : null
-                const fileId = file?.$id
-
-                const dbPost = await databaseService.updatePost(post.$id, { ...data, featuredImage: file ? file.$id : undefined, });
+                const dbPost = await databaseService.updatePost(post.$id, { ...data, featuredImage: file ? file.$id : undefined });
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`)
@@ -38,12 +37,12 @@ function PostForm({ post }) {
                 const file = await databaseService.uploadFile(data.image[0]);
                 if (file) {
                     const fileId = file?.$id;
+                    const slug = ID.unique();
                     data.featuredImage = fileId;
-                    data.slug = fileId;
                     console.log("file", file);
                     console.log("data", data);
-                    const dbPost = await databaseService.createPost({ ...data, userid: userData.$id, $id: fileId })
-                    console.log("dbpost", dbPost)
+                    const dbPost = await databaseService.createPost({ ...data, userid: userData.$id, slug: slug })
+                    console.log("dbpost", dbPost.$id)
                     if (dbPost) navigate(`/post/${dbPost.$id}`)
                     databaseService.getFilePreview(dbPost.featuredImage)
                 }
@@ -54,20 +53,20 @@ function PostForm({ post }) {
         }
     };
 
-    const slugTransform = useCallback((value) => {
-        if (value && typeof value === "string")
-            return value.trim().toLowerCase().replace(/[^a-zA-Z\\d]+/g, "-").slice(0, 30)
-        return ""
-    }, [])
+    // const slugTransform = useCallback((value) => {
+    //     if (value && typeof value === "string")
+    //         return value.trim().toLowerCase().replace(/[^a-zA-Z\\d]+/g, "-").slice(0, 30)
+    //     return ""
+    // }, [])
 
-    React.useEffect(() => {
-        const subscription = watch((value, { name }) => {
-            if (name === "title") {
-                setValue("slug", slugTransform(value.title), { shouldValidate: true })
-            }
-        })
-        return () => subscription.unsubscribe()
-    }, [watch, setValue, slugTransform])
+    // React.useEffect(() => {
+    //     const subscription = watch((value, { name }) => {
+    //         if (name === "title") {
+    //             setValue("slug", slugTransform(value.title), { shouldValidate: true })
+    //         }
+    //     })
+    //     return () => subscription.unsubscribe()
+    // }, [watch, setValue, slugTransform])
 
     return (
         <form
@@ -84,16 +83,16 @@ function PostForm({ post }) {
                         {...register("title", { required: true })}
                     />
 
-                    <Input
+                    {/* <Input
                         className="mb-4 w-full bg-white text-black border-gray-700 placeholder-gray-400 rounded-lg text-xl p-2 pl-3 focus:ring-2 focus:ring-gray-600 focus:border-transparent transition-all duration-200"
                         label="Slug"
                         labelClassName="text-gray-200 font-medium mb-2 block"
                         {...register("slug", { required: true })}
                         onInput={() => { setValue("slug", slugTransform(getValues("title")), { shouldValidate: true }) }}
-                    />
+                    /> */}
 
                     <Input
-                        className="mb-4 w-full bg-white text-black border-gray-700  rounded-lg text-xl p-2 pl-3 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-lg file:bg-gray-700 file:text-white hover:file:bg-gray-600 transition-all duration-200"
+                        className="mb-4 w-full bg-white text-black border-gray-700  rounded-lg text-xl p-2 pl-3 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:text-lg file:border-gray-700 file:text-black hover:file:bg-gray-200 transition-all duration-200"
                         type="file"
                         label="Featured Image"
                         labelClassName="text-gray-200 font-medium mb-2 block"

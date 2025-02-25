@@ -24,7 +24,7 @@ export class DatabaseService {
                     content,
                     featuredImage,
                     status,
-                    userid
+                    userid,
                 }
             )
         } catch (error) {

@@ -17,20 +17,21 @@ function Home() {
 
     if (!authStatus) {
         return (
-            <main className=" relativ flex-grow w-full flex flex-col items-center justify-center overflow-hidden">
+            <main className=" relativ top-[15
+            %] absolute flex-grow w-full flex flex-col items-center justify-center overflow-hidden">
                 {/* Falling Beam Effects */}
-        <div className="absolute z-[2] inset-0 pointer-events-none">
-          {Array.from({ length: 5 }, (_, i) => (
-            <div
-              key={i}
-              className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-10 bg-gradient-to-b from-pink-400 to-transparent opacity-0 animate-falling-beam"
-              style={{
-                animationDelay: `${Math.random() * 5}s`,
-                left: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
+                <div className="absolute z-[2] inset-0 pointer-events-none">
+                    {Array.from({ length: 5 }, (_, i) => (
+                        <div
+                            key={i}
+                            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-10 bg-gradient-to-b from-pink-400 to-transparent opacity-0 animate-falling-beam"
+                            style={{
+                                animationDelay: `${Math.random() * 5}s`,
+                                left: `${Math.random() * 100}%`,
+                            }}
+                        />
+                    ))}
+                </div>
 
                 <section className="text-center px-4 relative">
                     <div className='flex flex-col animate-fade-in'>

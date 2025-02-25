@@ -36,7 +36,7 @@ function App() {
   return !loading ? (
     <div className='flex flex-col min-h-screen w-full text-black'>
       <Header />
-      <main className='relative flex flex-grow items-center justify-center overflow-hidden'>  {/* Added relative and overflow-hidden */}
+      <main className='relative flex flex-grow overflow-hidden'>  {/* Added relative and overflow-hidden */}
         {/* Subtle Noise Overlay */}
         {/* <div className="absolute z-[1] inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 mix-blend-overlay"></div> */}
         <div className="relative z-[3] w-full">  {/* Add zIndex to this div */}
