@@ -1,11 +1,12 @@
 import React from 'react';
-import { Container, Logo, LogoutBtn, Button } from '../index';
+import { Container, Logo, LogoutBtn, Profile } from '../index';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link, NavLink } from 'react-router-dom';
 
 export const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
+  const { userData } = useSelector((state) => state.auth)
   const navigate = useNavigate();
 
   const navItems = [
@@ -29,6 +30,11 @@ export const Header = () => {
       slug: '/add-post',
       active: authStatus,
     },
+    {
+      name: 'Profile',
+      slug: '/profile',
+      active: authStatus,
+    },
   ];
 
   return (
@@ -42,8 +48,8 @@ export const Header = () => {
               </Link>
               <button className='px-1 m-2 cursor-pointer border border-gray-200 text-xs rounded-lg'>Beta</button>
             </div>
-            <ul className='flex ml-auto space-x-6'>
-              {navItems.map((item) =>
+            <ul className='flex ml-auto items-center space-x-6'>
+              {navItems.filter((item) => item.slug !== "/profile").map((item) =>
                 item.active ? (
                   <li key={item.name}>
                     <NavLink
@@ -63,6 +69,11 @@ export const Header = () => {
               {authStatus && (
                 <li>
                   <LogoutBtn className='px-4 py-2 text-sm font-medium text-white bg-[#F580BD] rounded-lg hover:bg-[#F580BD] transition-all duration-200' />
+                </li>
+              )}
+              {authStatus && (
+                <li>
+                  <Profile />
                 </li>
               )}
             </ul>

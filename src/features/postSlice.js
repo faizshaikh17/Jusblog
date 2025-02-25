@@ -3,7 +3,9 @@ import databaseService from "../appwrite/config";
 
 const initialState = {
     posts: [],
-    
+    loading: false,
+    error: null,
+
 }
 
 export const fetchPosts = createAsyncThunk("fetchPosts",
@@ -17,9 +19,18 @@ const postSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchPosts.fulfilled, (state, action) => {
-            state.posts = action.payload;
-        })
+        builder
+            .addCase(fetchPosts.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchPosts.fulfilled, (state, action) => {
+                state.loading = false;
+                state.posts = action.payload; // THIS IS VERY IMPORTANT - REPLACES THE ARRAY
+            })
+            .addCase(fetchPosts.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            });
     }
 })
 

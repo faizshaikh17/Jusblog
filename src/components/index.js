@@ -11,7 +11,8 @@ import PostForm from './post-form/PostForm'
 import Button from './Button'
 import AuthLayout from './AuthLayout'
 import Signup from './Signup'
+import Profile from './Header/Profile'
 
-export { Logo, Header, LogoutBtn, Footer, Container, Select, Input, PostCard, RTE, PostForm, Button, AuthLayout, Signup }
+export { Logo, Header, LogoutBtn, Footer, Container, Select, Input, PostCard, RTE, PostForm, Button, AuthLayout, Signup, Profile }
 
 

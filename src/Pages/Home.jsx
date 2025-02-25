@@ -10,12 +10,11 @@ function Home() {
     // const [posts, setPosts] = useState([]);
     const authStatus = useSelector((state) => state.auth.status);
     const dispatch = useDispatch();
-    const { posts } = useSelector((state) => state.post);
+    const { posts, loading, error } = useSelector((state) => state.post);
 
     useEffect(() => {
         if (posts) dispatch(fetchPosts());
     }, [dispatch, posts])
-    console.log(posts)
 
     // useEffect(() => {
     //     databaseService.getPosts([]).then((posts) => {
@@ -65,6 +64,7 @@ function Home() {
         );
     } else {
         return (
+
             <div className='w-full px-2 py-8'>
 
                 <div className='flex flex-col gap-6'>
@@ -75,6 +75,7 @@ function Home() {
                     ))}
                 </div>
             </div>
+
         );
     }
 }

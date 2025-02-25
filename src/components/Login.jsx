@@ -26,9 +26,11 @@ export function Login() {
       setError(error.message)
       navigate("/login")
     }
-
-
   }
+
+  useEffect(() => {
+  }, [dispatch])
+
   return (
     <div className='flex items-center justify-center w-full'>
       <div className={`mx-auto w-full sm:w-[80%] md:w-[60%] lg:w-[45%] xl:w-[34%]  max-w-lg bg-white rounded-2xl p-7 border border-gray-200 shadow-xl hover:shadow-2xl transition-shadow duration-300`}>
