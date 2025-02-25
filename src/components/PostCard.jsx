@@ -14,7 +14,7 @@ function PostCard({ $id, title, featuredImage, content }) {
                         </h2>
                         <div className='bg-[#2a2a2a] rounded-lg  overflow-hidden'>
                             <p className='text-sm line-clamp-3 text-[#bdbdc3] p-3'>
-                                {parse(content)}
+                                {parse(String(content))}
                             </p>
                         </div>
                     </div>

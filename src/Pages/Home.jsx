@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Container, PostCard } from '../components';
 import databaseService from '../appwrite/config';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
+import { fetchPosts } from '../features/postSlice';
 
 function Home() {
-    const [posts, setPosts] = useState([]);
+    // const [posts, setPosts] = useState([]);
     const authStatus = useSelector((state) => state.auth.status);
+    const dispatch = useDispatch();
+    const { posts } = useSelector((state) => state.post);
 
     useEffect(() => {
-        databaseService.getPosts([]).then((posts) => {
-            if (posts) {
-                setPosts(posts.documents);
-            }
-        });
-    }, []);
+        if (posts) dispatch(fetchPosts());
+    }, [dispatch, posts])
+    console.log(posts)
+
+    // useEffect(() => {
+    //     databaseService.getPosts([]).then((posts) => {
+    //         if (posts) {
+    //             setPosts(posts.documents);
+    //         }
+    //     });
+    // }, []);
 
     if (!authStatus) {
         return (
