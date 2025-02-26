@@ -40,8 +40,10 @@ function PostForm({ post }) {
                     const slug = ID.unique();
                     const by = userData.name
                     data.featuredImage = fileId;
+                    const date = new Date
+                    const currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
 
-                    const dbPost = await databaseService.createPost({ ...data, userid: userData.$id, slug: slug, by: by })
+                    const dbPost = await databaseService.createPost({ ...data, userid: userData.$id, slug: slug, by: by, date: currentDate })
                     console.log("dbpost", dbPost)
                     if (dbPost) navigate(`/post/${dbPost.$id}`)
                     databaseService.getFilePreview(dbPost.featuredImage)

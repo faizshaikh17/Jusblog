@@ -63,7 +63,11 @@ export default function Post() {
                     <header className="mb-6">
                         <h1 className="text-3xl font-bold pt-serif-regular-italic text-[#FCFCFF] mb-2">{post.title}</h1>
                         <div className="text-sm text-gray-500 flex items-center justify-between">
-                            <span>By: {posts.filter((post) => (post.$id === slug)).map((post) => post.by)}</span> {/* Replace with actual author */}
+                            <div className="flex flex-col">
+                                <span>By: {posts.filter((post) => (post.$id === slug)).map((post) => post.by)}</span> {/* Replace with actual author */}
+                                <span>{posts.filter((post) => (post.$id === slug)).map((post) => post.date)}</span> {/* Replace with actual author */}
+                            </div>
+
                             <span>
                                 {/* Edit/Delete Buttons (Conditional Rendering) */}
                                 {isAuthor && (

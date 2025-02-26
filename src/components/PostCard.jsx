@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 import Profile from './Header/Profile';
 import { useSelector } from 'react-redux';
 
-function PostCard({ $id, title, featuredImage, content, by }) {
+function PostCard({ $id, title, featuredImage, content, by, date }) {
     const { userData } = useSelector((state) => state.auth);
     const { posts } = useSelector((state) => state.post);
     const { slug } = useParams();
@@ -38,10 +38,13 @@ function PostCard({ $id, title, featuredImage, content, by }) {
                     </div>
 
                     {/* Author & Read More Section */}
-                    <div className="flex justify-between items-center mt-2">
+                    <div className="flex justify-between items-end mt-2">
                         <div className='flex items-center gap-2'>
                             <Profile className='bg-pink-200 text-[#2a2a2a]' >{by.charAt(0) || "F"}</Profile>
-                            <p className='text-sm font-semibold text-[#FCFCFF]'>By. {by || "..."}</p>
+                            <div className='flex flex-col'>
+                                <p className='text-xs font-semibold text-[#FCFCFF]'>{by || "..."}</p>
+                                <p className='text-xs font-semibold text-[#FCFCFF]'>{date}</p>
+                            </div>
                         </div>
                         <Link to={`/post/${$id}`} className="block">
                             <span className="text-xs text-gray-500 hover:text-gray-400 hover:underline transition-colors duration-200">Read More →</span>
