@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-SimpleBlog is a minimalist blog platform designed for developers and writers who want a clean, distraction-free writing experience. It leverages Markdown for content creation and provides a simple, easy-to-use interface.  It's perfect for personal blogs, technical documentation, or sharing your thoughts with the world.![Jusblog.me](https://jusblog.vercel.app/)
+SimpleBlog is a minimalist blog platform designed for developers and writers who want a clean, distraction-free writing experience. It leverages Markdown for content creation and provides a simple, easy-to-use interface.  It's perfect for personal blogs, technical documentation, or sharing your thoughts with the world.[Jusblog.me](https://jusblog.vercel.app/)
 
 Key features include:
 
@@ -29,7 +29,7 @@ Main motive was to have person blogging platform though, I have not write someth
     *   Tailwind CSS
     *   JavaScript
     *   Redux Toolkit
-    
+
 *   **Backend:**
     *   Appwrite
 
@@ -44,7 +44,7 @@ Main motive was to have person blogging platform though, I have not write someth
 2.  Navigate to the project directory:
 
     ```bash
-    cd Jusblog  #Note I changed BlogApp for Jusblog
+    cd Jusblog  
     ```
 
 3.  Install the required Node modules:
@@ -53,28 +53,13 @@ Main motive was to have person blogging platform though, I have not write someth
     npm install
     ```
 
-### Configuration
-
-1.  Configure Appwrite:
-
-    *   Rename `.env.sample` to `.env` in the project directory.
-    *   Open `.env` and update the following variables with your Appwrite project and API keys:
-
-        ```
-        VITE_APPWRITE_PROJECT_ID=[YOUR_APPWRITE_PROJECT_ID]
-        VITE_APPWRITE_ENDPOINT=[YOUR_APPWRITE_ENDPOINT] # Example:  https://cloud.appwrite.io/v1
-        ```
-    *   [Add any specific configuration steps related to your project]
-
-### Running the Application
-
-1.  Run the client server:
+4.  Run the client server:
 
     ```bash
     npm run dev
     ```
 
-2.  Open your preferred browser and navigate to:
+5.  Open your preferred browser and navigate to:
 
     ```
     localhost:5173
