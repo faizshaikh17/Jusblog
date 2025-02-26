@@ -40,7 +40,7 @@ function PostCard({ $id, title, featuredImage, content, by, date }) {
                     {/* Author & Read More Section */}
                     <div className="flex justify-between items-end mt-2">
                         <div className='flex items-center gap-2'>
-                            <Profile className='bg-pink-200 text-[#2a2a2a]' >{by.charAt(0) || "F"}</Profile>
+                            <Profile className='bg-pink-200 text-[#2a2a2a]' >{by.toUpperCase().charAt(0) || "F"}</Profile>
                             <div className='flex flex-col'>
                                 <p className='text-xs font-semibold text-[#FCFCFF]'>{by || "..."}</p>
                                 <p className='text-xs font-semibold text-[#FCFCFF]'>{date}</p>

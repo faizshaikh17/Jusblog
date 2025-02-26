@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { fetchPosts } from '../features/postSlice';
 import Profile from '../components/Header/Profile';
 
+// Function to generate a random poppy color
+
 function Home() {
     const authStatus = useSelector((state) => state.auth.status);
     const dispatch = useDispatch();
@@ -16,14 +18,16 @@ function Home() {
         if (posts) dispatch(fetchPosts());
     }, [dispatch, posts]);
 
-    const arr = posts.map((post) => (post.by));
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 1; j <= arr.length - 1; j++) {
-            if (arr[i] === arr[j]) {
-                arr.pop(arr[j]);
-            }
+    const [authors, setAuthors] = useState([]);
+
+    useEffect(() => {
+        if (posts) {
+            // Extract authors and remove duplicates efficiently
+            const uniqueAuthors = [...new Set(posts.map(post => post.by))];
+            setAuthors(uniqueAuthors);
         }
-    }
+    }, [posts]);
+
 
     if (!authStatus) {
         return (
@@ -69,7 +73,7 @@ function Home() {
             <div className='w-full flex px-2'>
                 <div className='mx-2 w-2/3'>
                     <div className='flex flex-col gap-6'>
-                        <h1 className='text-3xl text-[#c6c6c9] cursor-pointer hover:text-[#FCFCFF] transition-colors font-bold'>Blogs</h1>
+                        <h1 className='text-3xl text-[#FCFCFF] font-bold'>Blogs</h1>
                         {posts.map((post) => (
                             <div key={post.$id} className='w-full'>
                                 <PostCard {...post} />
@@ -78,15 +82,17 @@ function Home() {
                     </div>
                 </div>
                 <div className='space-y-6 h-full mx-2 w-1/3'>
-                    <h1 className='text-3xl text-[#c6c6c9] cursor-pointer hover:text-[#FCFCFF] transition-colors font-bold'>Authors</h1>
+                    <h1 className='text-3xl text-[#FCFCFF] font-bold'>Authors</h1>
                     <div className='flex flex-col md:flex-row h-full md:h-full gap-4 p-4 rounded-xl bg-[#171717] hover:bg-[#1f1f1f] transition-all duration-300 ease-in-out shadow-md hover:shadow-2xl border border-[#2a2a2a] hover:border-[#828287] overflow-hidden'>
                         <div className='flex flex-col gap-4'>
-                            {arr.map((name) => (
-                                <div key={name} className='flex gap-3 text-xl font-bold text-[#FCFCFF] items-center w-full'>
-                                    <Profile className=' bg-pink-300 text-xl h-[3.2rem] w-[3.2rem] '>{name.charAt(0)}</Profile>
-                                    <span className='cursor-pointer hover:underline'>{name}</span>
-                                </div>
-                            ))}
+                            {authors.map((name) => {
+                                return (
+                                    <div key={name} className='flex gap-3 text-xl font-bold text-[#FCFCFF] items-center w-full'>
+                                        <Profile className={`text-[1.5rem] bg-pink-300 hover:bg-pink-200 h-[3.2rem] w-[3.2rem] `}>{name.toUpperCase().charAt(0)}</Profile>
+                                        <span className='hover:underline'>{name}</span>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

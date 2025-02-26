@@ -68,13 +68,13 @@ export const Header = () => {
               )}
               {authStatus && (
                 <li>
-                  <LogoutBtn className='px-4 py-2 text-sm font-medium text-white bg-[#F580BD] rounded-lg hover:bg-[#F580BD] transition-all duration-200' />
+                  <LogoutBtn className='px-4 py-2 font-medium text-white bg-[#F580BD] rounded-lg hover:bg-[#F580BD] transition-all duration-200' />
                 </li>
               )}
               {authStatus && (
                 <li>
-                  <Profile className={'bg-pink-300 text-[#2a2a2a] hover:bg-[#F580BD] '}>
-                    {userData && userData.name.charAt(0) || "F"}
+                  <Profile className={'bg-pink-300 text-[#2a2a2a] hover:bg-pink-200 '}>
+                    {userData && userData.name.toUpperCase().charAt(0) || "F"}
                   </Profile>
                 </li>
               )}
