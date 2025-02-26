@@ -70,8 +70,8 @@ function Home() {
     } else {
         return (
 
-            <div className='w-full flex px-2'>
-                <div className='mx-2 w-2/3'>
+            <div className='w-full flex'>
+                <div className='mx-6 w-2/3'>
                     <div className='flex flex-col gap-6'>
                         <h1 className='text-3xl text-[#FCFCFF] font-bold'>Blogs</h1>
                         {posts.map((post) => (
@@ -81,7 +81,7 @@ function Home() {
                         ))}
                     </div>
                 </div>
-                <div className='space-y-6 h-full mx-2 w-1/3'>
+                <div className='space-y-6 h-full mx-6 w-1/3'>
                     <h1 className='text-3xl text-[#FCFCFF] font-bold'>Authors</h1>
                     <div className='flex flex-col md:flex-row h-full md:h-full gap-4 p-4 rounded-xl bg-[#171717] hover:bg-[#1f1f1f] transition-all duration-300 ease-in-out shadow-md hover:shadow-2xl border border-[#2a2a2a] hover:border-[#828287] overflow-hidden'>
                         <div className='flex flex-col gap-4'>
