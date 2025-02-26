@@ -73,7 +73,7 @@ export const Header = () => {
               )}
               {authStatus && (
                 <li>
-                  <Profile>
+                  <Profile className={'bg-pink-200 text-[#2a2a2a] hover:bg-[#171717]'}>
                     {userData && userData.name.charAt(0) || "F"}
                   </Profile>
                 </li>

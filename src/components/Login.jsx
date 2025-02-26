@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Logo, Input, Button } from './index'
 import { useForm } from 'react-hook-form';
@@ -12,6 +12,7 @@ export function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState("")
   const { register, handleSubmit } = useForm();
+  const { userData } = useSelector((state) => state.auth)
 
   const login = async (data) => {
     setError("")
@@ -28,8 +29,6 @@ export function Login() {
     }
   }
 
-  useEffect(() => {
-  }, [dispatch])
 
   return (
     <div className='flex items-center justify-center w-full'>
