@@ -38,11 +38,11 @@ function PostForm({ post }) {
                 if (file) {
                     const fileId = file?.$id;
                     const slug = ID.unique();
+                    const by = userData.name
                     data.featuredImage = fileId;
-                    console.log("file", file);
-                    console.log("data", data);
-                    const dbPost = await databaseService.createPost({ ...data, userid: userData.$id, slug: slug })
-                    console.log("dbpost", dbPost.$id)
+
+                    const dbPost = await databaseService.createPost({ ...data, userid: userData.$id, slug: slug, by: by })
+                    console.log("dbpost", dbPost)
                     if (dbPost) navigate(`/post/${dbPost.$id}`)
                     databaseService.getFilePreview(dbPost.featuredImage)
                 }

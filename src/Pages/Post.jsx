@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { data, Link, useNavigate, useParams } from "react-router-dom";
 import databaseService from "../appwrite/config";
 import { Button, Container, PostCard } from "../components";
 import parse from "html-react-parser";
@@ -48,7 +48,7 @@ export default function Post() {
             <Container>
                 <article className="w-full max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                     {/* Featured Image Section */}
-                    <div className="relative mb-8">
+                    <div className="relative mb-12">
                         <img
                             src={databaseService.getFilePreview(post.featuredImage)}
                             alt={post.title}
@@ -61,9 +61,9 @@ export default function Post() {
 
                     {/* Post Header */}
                     <header className="mb-6">
-                        <h1 className="text-3xl font-bold text-[#FCFCFF] mb-2">{post.title}</h1>
+                        <h1 className="text-3xl font-bold pt-serif-regular-italic text-[#FCFCFF] mb-2">{post.title}</h1>
                         <div className="text-sm text-gray-500 flex items-center justify-between">
-                            <span>By: Faiz</span> {/* Replace with actual author */}
+                            <span>By: {posts.filter((post) => (post.$id === slug)).map((post) => post.by)}</span> {/* Replace with actual author */}
                             <span>
                                 {/* Edit/Delete Buttons (Conditional Rendering) */}
                                 {isAuthor && (
@@ -83,7 +83,7 @@ export default function Post() {
                     </header>
 
                     {/* Post Content */}
-                    <div className="prose prose-invert text-xl max-w-none text-[#FCFCFF]">{parse(post.content)}</div>
+                    <div className="prose prose-invert pt-serif-regular-italic text-lg max-w-none text-[#FCFCFF]">{parse(post.content)}</div>
                 </article>
             </Container>
             <Container>

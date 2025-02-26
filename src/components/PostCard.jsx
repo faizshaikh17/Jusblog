@@ -1,12 +1,15 @@
 import React from 'react';
 import databaseService from '../appwrite/config';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import Profile from './Header/Profile';
 import { useSelector } from 'react-redux';
 
-function PostCard({ $id, title, featuredImage, content }) {
+function PostCard({ $id, title, featuredImage, content, by }) {
     const { userData } = useSelector((state) => state.auth);
+    const { posts } = useSelector((state) => state.post);
+    const { slug } = useParams();
+
 
     return (
         <Link to={`/post/${$id}`} className="block">
@@ -29,7 +32,7 @@ function PostCard({ $id, title, featuredImage, content }) {
                         </h2>
                         <div className='bg-[#2a2a2a] rounded-lg overflow-hidden'>
                             <p className='text-sm line-clamp-3 text-[#bdbdc3] p-3'>
-                                {parse(String(content))}
+                                {parse(String(content).slice(0, 230) + "...")}
                             </p>
                         </div>
                     </div>
@@ -37,8 +40,8 @@ function PostCard({ $id, title, featuredImage, content }) {
                     {/* Author & Read More Section */}
                     <div className="flex justify-between items-center mt-2">
                         <div className='flex items-center gap-2'>
-                            <Profile className='bg-pink-200 text-[#2a2a2a]' >{userData?.name?.charAt(0).toUpperCase() || 'U'}</Profile>
-                            <p className='text-sm font-semibold text-[#FCFCFF]'>{userData?.name || "Unknown"}</p>
+                            <Profile className='bg-pink-200 text-[#2a2a2a]' >{by.charAt(0) || "F"}</Profile>
+                            <p className='text-sm font-semibold text-[#FCFCFF]'>By. {by || "..."}</p>
                         </div>
                         <Link to={`/post/${$id}`} className="block">
                             <span className="text-xs text-gray-500 hover:text-gray-400 hover:underline transition-colors duration-200">Read More →</span>

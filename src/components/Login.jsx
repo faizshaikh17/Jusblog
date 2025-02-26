@@ -14,20 +14,21 @@ export function Login() {
   const { register, handleSubmit } = useForm();
   const { userData } = useSelector((state) => state.auth)
 
+
   const login = async (data) => {
-    setError("")
+    setError("");
     try {
-      const session = await authService.login(data)
+      const session = await authService.login(data);
       if (session) {
-        const userData = await authService.getUser()
-        if (userData) dispatch(authLogin(userData));
-        navigate("/")
+        const userData = await authService.getUser();
+        dispatch(authLogin(userData)); // Dispatch after successful login
+        navigate("/"); // Navigate *after* dispatching
       }
     } catch (error) {
-      setError(error.message)
-      navigate("/login")
+      setError(error.message);
+      navigate("/login");
     }
-  }
+  };
 
 
   return (
@@ -36,10 +37,7 @@ export function Login() {
         <h2 className="mb-2 text-left text-2xl text-[#09090B] font-semibold leading-tight">Sign In</h2>
 
         <p className="mb-5 text-left text-sm text-gray-700">Welcome to Jusblog! Sign in to get started
-
         </p>
-
-
 
         {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
         <form onSubmit={handleSubmit(login)} className='mt-6'>
