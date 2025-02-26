@@ -5,24 +5,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 import { fetchPosts } from '../features/postSlice';
+import Profile from '../components/Header/Profile';
 
 function Home() {
-    // const [posts, setPosts] = useState([]);
     const authStatus = useSelector((state) => state.auth.status);
     const dispatch = useDispatch();
     const { posts, loading, error } = useSelector((state) => state.post);
 
     useEffect(() => {
         if (posts) dispatch(fetchPosts());
-    }, [dispatch, posts])
+    }, [dispatch, posts]);
 
-    // useEffect(() => {
-    //     databaseService.getPosts([]).then((posts) => {
-    //         if (posts) {
-    //             setPosts(posts.documents);
-    //         }
-    //     });
-    // }, []);
+    const arr = posts.map((post) => (post.by));
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 1; j <= arr.length - 1; j++) {
+            if (arr[i] === arr[j]) {
+                arr.pop(arr[j]);
+            }
+        }
+    }
 
     if (!authStatus) {
         return (
@@ -65,15 +66,31 @@ function Home() {
     } else {
         return (
 
-            <div className='w-full px-2 py-8'>
-
-                <div className='flex flex-col gap-6'>
-                    {posts.map((post) => (
-                        <div key={post.$id} className='w-2/3'>
-                            <PostCard {...post} />
-                        </div>
-                    ))}
+            <div className='w-full flex px-2'>
+                <div className='mx-2 w-2/3'>
+                    <div className='flex flex-col gap-6'>
+                        <h1 className='text-3xl text-[#c6c6c9] cursor-pointer hover:text-[#FCFCFF] transition-colors font-bold'>Blogs</h1>
+                        {posts.map((post) => (
+                            <div key={post.$id} className='w-full'>
+                                <PostCard {...post} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
+                <div className='space-y-6 h-full mx-2 w-1/3'>
+                    <h1 className='text-3xl text-[#c6c6c9] cursor-pointer hover:text-[#FCFCFF] transition-colors font-bold'>Authors</h1>
+                    <div className='flex flex-col md:flex-row h-full md:h-full gap-4 p-4 rounded-xl bg-[#171717] hover:bg-[#1f1f1f] transition-all duration-300 ease-in-out shadow-md hover:shadow-2xl border border-[#2a2a2a] hover:border-[#828287] overflow-hidden'>
+                        <div className='flex flex-col gap-4'>
+                            {arr.map((name) => (
+                                <div key={name} className='flex gap-3 text-xl font-bold text-[#FCFCFF] items-center w-full'>
+                                    <Profile className=' bg-pink-300 text-xl h-[3.2rem] w-[3.2rem] '>{name.charAt(0)}</Profile>
+                                    <span className='cursor-pointer hover:underline'>{name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         );

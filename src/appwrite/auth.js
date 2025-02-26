@@ -2,8 +2,10 @@ import { Client, Account, ID, AppwriteException } from 'appwrite';
 import conf from '../conf/conf';
 
 export class AuthService {
+
     client = new Client();
     account;
+    users;
 
     constructor() {
         this.client.setEndpoint(conf.appwriteUrl) // Your API Endpoint
@@ -44,6 +46,9 @@ export class AuthService {
         }
     }
 
+    // async getUsers() {
+    //     const list = await this.users.list([]);
+    // }
 
     async logout() {
         try {
