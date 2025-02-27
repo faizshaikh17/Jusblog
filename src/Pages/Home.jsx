@@ -75,7 +75,7 @@ function Home() {
                             {authors.map((name) => {
                                 return (
                                     <div key={name} className='flex gap-3 text-xl font-bold text-[#FCFCFF] items-center w-full'>
-                                        <Profile className={`text-[1.5rem] text-[#171717] bg-white hover:bg-pink-200 h-[3.2rem] w-[3.2rem] `}>{name.toUpperCase().charAt(0)}</Profile>
+                                        <Profile className={`text-[1.5rem] text-[#171717] bg-white hover:bg-pink-200 h-[3rem] w-[3rem] `}>{name.toUpperCase().charAt(0)}</Profile>
                                         <span className='hover:underline'>{name}</span>
                                     </div>
                                 );
