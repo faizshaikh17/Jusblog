@@ -15,7 +15,7 @@ function LogoutBtn() {
 
     return (
         <NavLink className={
-            `inline-block px-4 py-2 text-sm font-medium transition-all duration-200 hover:text-[#F580BD] text-white  hover:border-b-2 hover:border-[#F580BD]
+            `inline-block px-4 py-2 text-base font-medium transition-all duration-200 hover:text-[#F580BD] text-white  hover:border-b-2 hover:border-[#F580BD]
             }`
         }
             onClick={onHandleCLick}

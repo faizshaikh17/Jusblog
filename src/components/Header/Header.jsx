@@ -55,7 +55,7 @@ export const Header = () => {
                     <NavLink
                       to={item.slug}
                       className={({ isActive }) =>
-                        `inline-block px-4 py-2 text-sm font-medium transition-all duration-200 ${isActive
+                        `inline-block px-4 py-2 text-base font-medium transition-all duration-200 ${isActive
                           ? 'text-[#F580BD] border-b-2 border-[#F580BD]'
                           : 'text-white hover:text-[#F580BD] hover:border-b-2 hover:border-[#F580BD]'
                         }`

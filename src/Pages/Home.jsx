@@ -32,28 +32,15 @@ function Home() {
     if (!authStatus) {
         return (
             <main className="top-[10%] absolute flex-grow w-full flex flex-col items-center justify-center overflow-hidden">
-                {/* Falling Beam Effects */}
-                <div className="absolute z-[2] inset-0 pointer-events-none">
-                    {Array.from({ length: 5 }, (_, i) => (
-                        <div
-                            key={i}
-                            className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-10 bg-gradient-to-b from-pink-400 to-transparent opacity-0 animate-falling-beam"
-                            style={{
-                                animationDelay: `${Math.random() * 5}s`,
-                                left: `${Math.random() * 100}%`,
-                            }}
-                        />
-                    ))}
-                </div>
 
                 <section className="text-center px-4 relative">
                     <div className='flex flex-col animate-fade-in'>
-                        <h1 className="text-7xl font-light md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-pink-100 to-pink-400 animate-text-glow leading-tight pt-serif-regular">
+                        <h1 className="text-7xl  md:text-9xl text-transparent bg-clip-text bg-gradient-to-r bg-pink-100 animate-text-glow leading-tight pt-serif-regular">
                             Ideas &
                         </h1>
-                        <h1 className="text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-100 animate-text-glow leading-tight pt-serif-regular">
-                            Stories
-                        </h1>
+                        <h1 className="text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r bg-pink-400 animate-text-glow leading-tight pt-serif-regular before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] before:w-full before:h-1/2 before:bg-pink-300 before:opacity-30 before:blur-3xl before:z-[-1] relative">
+    Stories
+</h1>
 
                     </div>
                     <p className=" mt-10 text-sm md:text-lg text-gray-300 font-light tracking-wide animate-fade-in-delay pt-serif-regular-italic">
@@ -88,7 +75,7 @@ function Home() {
                             {authors.map((name) => {
                                 return (
                                     <div key={name} className='flex gap-3 text-xl font-bold text-[#FCFCFF] items-center w-full'>
-                                        <Profile className={`text-[1.5rem] bg-pink-300 hover:bg-pink-200 h-[3.2rem] w-[3.2rem] `}>{name.toUpperCase().charAt(0)}</Profile>
+                                        <Profile className={`text-[1.5rem] text-[#171717] bg-white hover:bg-pink-200 h-[3.2rem] w-[3.2rem] `}>{name.toUpperCase().charAt(0)}</Profile>
                                         <span className='hover:underline'>{name}</span>
                                     </div>
                                 );
