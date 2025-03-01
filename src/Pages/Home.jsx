@@ -43,7 +43,7 @@ function Home() {
 </h1>
 
                     </div>
-                    <p className=" mt-10 text-sm md:text-lg text-gray-300 font-light tracking-wide animate-fade-in-delay pt-serif-regular-italic">
+                    <p className=" mt-11 text-sm md:text-lg text-gray-300 font-light tracking-wide animate-fade-in-delay pt-serif-regular-italic">
                         Unleash & Express your writeups.
                     </p>
                 </section>
