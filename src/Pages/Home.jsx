@@ -31,7 +31,7 @@ function Home() {
 
     if (!authStatus) {
         return (
-            <main className="top-[10%] absolute flex-grow w-full flex flex-col items-center justify-center overflow-hidden">
+            <main className="top-[10%] absolute flex-grow w-full flex flex-col gap-8 items-center justify-center overflow-hidden">
 
                 <section className="text-center px-4 relative">
                     <div className='flex flex-col animate-fade-in'>
@@ -39,8 +39,8 @@ function Home() {
                             Ideas &
                         </h1>
                         <h1 className="text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-r bg-pink-400 animate-text-glow leading-tight pt-serif-regular before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] before:w-full before:h-1/2 before:bg-pink-300 before:opacity-30 before:blur-3xl before:z-[-1] relative">
-    Stories
-</h1>
+                            Stories
+                        </h1>
 
                     </div>
                     <p className=" mt-11 text-sm md:text-lg text-gray-300 font-light tracking-wide animate-fade-in-delay pt-serif-regular-italic">
@@ -48,9 +48,9 @@ function Home() {
                     </p>
                 </section>
                 <Link to={'/signup'}>
-                    <Button className=' mt-8 text-xl px-6 rounded-3xl font-semibold bg-white'>
-                        Get Started
-                    </Button>
+                <Button className='mt-8 text-xl px-6 rounded-3xl font-semibold text-white bg-gradient-to-r from-pink-500 to-pink-300 hover:from-pink-600 hover:to-pink-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition-all duration-200'>
+    Get Started
+</Button>
                 </Link>
             </main>
         );
