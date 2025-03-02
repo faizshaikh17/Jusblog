@@ -9,7 +9,7 @@ export function Footer() {
             <div className=" flex justify-center items-center space-x-2">
                 <p className="text-center text-xs">© Designed & Developed by Faiz Shaikh</p>
                 <a
-                    href="https://github.com/faizshaikh17/whyReact/tree/main/jusBlog"
+                    href="https://github.com/faizshaikh17/JusBlog"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

@@ -122,7 +122,7 @@ function PostForm({ post }) {
 
                         <Button
                             type="submit"
-                            className={`m-4 w-1/5 h-12 rounded-lg bg-blue-500 hover:bg-blue-700 text-white text-base font-medium transition-all duration-50 `}
+                            className={` text-base font-semibold  text-white bg-[#09090B] hover:bg-[#09090B] rounded-lg shadow-md  duration-300 m-4 w-4/5 h-12 transition-all duration-50 `}
                         >
                             {post ? "Update" : "Submit"}
                         </Button>
