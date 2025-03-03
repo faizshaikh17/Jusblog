@@ -115,4 +115,4 @@ Contributions are welcome! If you find any bugs or have suggestions for new feat
 
 ---
 
-**Note:**  This project relies on Appwrite. Please ensure you have a properly configured Appwrite instance running and that your environment variables are correctly set.  Refer to the Appwrite documentation for detailed setup instructions.
+**Note:**  This project relies on Appwrite. Please ensure you have a properly configured Appwrite instance running and that your environment variables are correctly set.  Refer to the Appwrite documentation for further details.
