@@ -51,11 +51,11 @@ export const Header = () => {
             <ul className='flex ml-auto items-center space-x-6'>
               {navItems.filter((item) => item.slug !== "/profile").map((item) =>
                 item.active ? (
-                  <li key={item.name}>
+                  <li key={item.name} className='flex items-center justify-center'>
                     <NavLink
                       to={item.slug}
                       className={({ isActive }) =>
-                        `inline-block px-4 py-2 text-base font-medium transition-all duration-200 ${isActive
+                        `flex items-center justify-center text-sm px-4 py-2 md:text-base font-medium transition-all duration-200 ${isActive
                           ? 'text-[#F580BD] border-b-2 border-[#F580BD]'
                           : 'text-white hover:text-[#F580BD] hover:border-b-2 hover:border-[#F580BD]'
                         }`
